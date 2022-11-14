@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "watch": ["src/**/*.ts"],
+  "execMap": {
+    "ts": "npm run lint && node --no-lazy -r ts-node/register"
+  }
+}

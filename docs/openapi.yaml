@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Swagger CronChallenge - OpenAPI 3.0
+  description: Api em NodeJs desenvolvida para um challenge code da empresa Coodesh
+  contact:
+    email: lucianoaa111@gmail.com
+  version: '1'
+servers:
+  - url: http://localhost:3333/api
+tags:
+  - name: products
+    description: Everything about products
+paths:
+  /health-check:
+    get:
+      tags:
+        - health-check
+      summary: api check
+      description: api check endpoint to check api behavior
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Get products error
+
+  /products:
+    get:
+      tags:
+        - products
+      summary: Get many products
+      description: Get many products
+      parameters:
+        - name: limit
+          in: query
+          description: product limit on request
+          required: true
+          schema:
+            type: number
+        - name: offset
+          in: query
+          description: skip product on request
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Get products error
+
+  /products/{code}:
+    get:
+      tags:
+        - products
+      summary: Get many products
+      description: Get many products
+      parameters:
+        - name: code
+          in: path
+          description: product code
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Get product error
+    put:
+      tags:
+        - products
+      summary: update product
+      description: Get many products
+      parameters:
+        - name: code
+          in: path
+          description: product code
+          required: true
+          schema:
+            type: integer
+            example: 10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: 'draft'
+                url:
+                  type: string
+                  example: 'http://teste.com'
+                creator:
+                  type: string
+                  example: 'teste'
+                product_name:
+                  type: string
+                  example: 'teste'
+                quantity:
+                  type: string
+                  example: '123'
+                brands:
+                  type: string
+                  example: 'teste'
+                categories:
+                  type: string
+                  example: 'teste'
+                labels:
+                  type: string
+                  example: 'teste'
+                cities:
+                  type: string
+                  example: 'teste'
+                purchase_places:
+                  type: string
+                  example: 'teste'
+                stores:
+                  type: string
+                  example: '123'
+                ingredients_text:
+                  type: string
+                  example: 'teste'
+                traces:
+                  type: string
+                  example: 'teste'
+                serving_size:
+                  type: string
+                  example: '123'
+                serving_quantity:
+                  type: integer
+                  example: 123
+                nutriscore_score:
+                  type: integer
+                  example: 123
+                nutriscore_grade:
+                  type: string
+                  example: '123'
+                main_category:
+                  type: string
+                  example: '123'
+                image_url:
+                  type: string
+                  example: 'http://img.com'
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Get product error
+
+    delete:
+      tags:
+        - products
+      summary: delete a product
+      description: set trash status in a product
+      parameters:
+        - name: code
+          in: path
+          description: product code
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Get products error
