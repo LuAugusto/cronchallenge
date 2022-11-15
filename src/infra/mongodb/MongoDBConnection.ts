@@ -22,7 +22,6 @@ export default class MongoDBConnection {
   public async makeConnection() {
     const url = config.getValue(DB_URL)
     const dbName = config.getValue(DB_NAME)
-    console.log(dbName)
     try {
       const connection = new MongoClient(url)
 

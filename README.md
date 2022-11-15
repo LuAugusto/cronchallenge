@@ -14,6 +14,10 @@ git clone https://github.com/LuAugusto/cronchallenge.git
 . Arquivo .env:
 É necessario criar no arquivo .env e definir:
 DB_URL -> Url do banco mongoDB
+Por questões de segurança a URL de acesso ao banco utilizado no desafio não esta presente no arquivo .env
+sendo necessário criar no : https://www.mongodb.com/cloud/atlas/register
+.O mongodb cria de forma automática o banco de dados e a collection caso não exista, o nome do banco
+esta presente no arquivo .env, a única collection utilizada se chama 'products'
 
 . Instalando recursos e libs:
 npm i
@@ -21,14 +25,17 @@ npm i
 . Iniciando a api:
 npm run dev
 
+Rota de health-check para validação de funcionamento da api:
+http://localhost:3333/api/health-check
+
 ## Utilizando projeto com Docker
 
 Para utilizar o projeto com o docker, siga estas etapas:
 
 Requisitos: Docker instalado
 
-1 - sudo docker-compose build
-2 - sudo docker-compose up
+sudo docker-compose build
+sudo docker-compose up
 
 Porta do projeto: 3333
 

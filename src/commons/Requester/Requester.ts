@@ -67,12 +67,6 @@ export default class Requester {
     })
 
     try {
-      console.log({
-        url: this.url,
-        headers: this.gehHeaders(),
-        data: this.body,
-        method: this.method,
-      })
       const { data } = await axios({
         url: this.url,
         headers: this.gehHeaders(),

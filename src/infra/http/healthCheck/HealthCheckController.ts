@@ -4,20 +4,13 @@ import { ParameterizedContext } from 'koa'
 import { DefaultResponse } from '../../../commons/Utils'
 
 const logger = APILogger.getInstance()
+const db = MongoDBConnection.getInstance().makeConnection()
 
 export default class HealthCheckController {
   public async execute({ request, response }: ParameterizedContext) {
-    const db = MongoDBConnection.getInstance()
-      .makeConnection()
-      .then((response) => {
-        logger.info('Connection', { request })
-      })
-      .catch((error: Error) => {
-        logger.error('Connection error', error)
-        throw error
-      })
-
+    const importHistory = await (await db).collection('history_imports').findOne()
+    logger.info('Connection health-check', request)
     response.status = 200
-    response.body = DefaultResponse.SUCCESS
+    response.body = { imports: importHistory }
   }
 }

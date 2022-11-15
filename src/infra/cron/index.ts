@@ -1,17 +1,14 @@
 import cron from 'node-cron'
-import FetchProductFilesService from '../../modules/Products/useCases/fetchProductFiles/services/FetchProductFilesService'
-import FetchProductFilesGenerateUrl from '../../modules/Products/useCases/fetchProductFiles/services/FetchProductFilesGenerateUrl'
+import { importDataToDatabase } from '../../modules/Products/useCases/fetchProductFiles/services/ImportDataToDatabaseUseCase'
+import Config from '../../commons/config/Config'
+import { TIME_CRON } from '../../commons/config/Contants'
 
-const fetchProductFilesGenerateUrl = new FetchProductFilesGenerateUrl()
-const fetchProductFilesService = new FetchProductFilesService()
+const config = Config.getInstance()
 
-const urls = fetchProductFilesGenerateUrl.urlDownloadfiles()
+const time = config.getValuesAsNumber(TIME_CRON)
 
-export function executeCron() {
-  urls.forEach((url, index) => {
-    const indexCalc = (index + 1) * 2
-    cron.schedule(`*/${indexCalc} * * * *`, () => {
-      console.log(`${url} -> ${index}`)
-    })
-  })
+export async function FetchFiles() {
+  //cron.schedule(`*/${time} * * * *`, async () => {
+  await importDataToDatabase.execute()
+  //})
 }
