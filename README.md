@@ -28,6 +28,17 @@ npm run dev
 Rota de health-check para validação de funcionamento da api:
 http://localhost:3333/api/health-check
 
+## sobre o sistema Cron
+
+uma variavel chamada TIME_CRON definida no .env define o periodo do cron.
+atualmente foi definido 20 minutos para rodar o cron, o cron é acionado automaticamente após
+o servidor iniciar pelo Docker ou com o comando npm run dev.
+
+o tempo de 20 minutos foi definido por questões de testes.
+
+Lib utilizada: https://www.npmjs.com/package/node-cron
+Cron Maker (Para criar schedules): http://www.cronmaker.com/;jsessionid=node01hb9tfy89j665fm5dhtsglbbi1066151.node0?0
+
 ## Utilizando projeto com Docker
 
 Para utilizar o projeto com o docker, siga estas etapas:

@@ -8,7 +8,7 @@ const config = Config.getInstance()
 const time = config.getValuesAsNumber(TIME_CRON)
 
 export async function FetchFiles() {
-  //cron.schedule(`*/${time} * * * *`, async () => {
-  await importDataToDatabase.execute()
-  //})
+  cron.schedule(`*/${time} * * * *`, async () => {
+    await importDataToDatabase.execute()
+  })
 }
